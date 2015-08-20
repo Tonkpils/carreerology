@@ -1,0 +1,10 @@
+
+<div class="mdl-layout__drawer">
+  <header class="drawer-header">
+    <span class="mdl-layout-title"><%= current_admin.email %></span>
+  </header>
+  <nav class="mdl-navigation">
+    <%= link_to "New Job", new_job_path, class: "mdl-navigation__link" %>
+    <%= link_to "Sign Out", destroy_admin_session_path, class: "mdl-navigation__link", method: :delete %>
+  </nav>
+</div>

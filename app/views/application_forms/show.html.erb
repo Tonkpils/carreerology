@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @application_form.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @application_form.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @application_form.address %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @application_form.phone_number %>
+</p>
+
+<%= link_to 'Back', job_application_forms_path(@application_form.job) %>

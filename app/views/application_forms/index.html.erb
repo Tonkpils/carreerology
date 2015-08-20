@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Applications for <%= @job.name %></h2>
+
+<table class="mdl-data-table mdl-js-data-table">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @application_forms.each do |application_form| %>
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric"><%= application_form.name %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= application_form.email %></td>
+        <td><%= link_to 'Show', job_application_form_path(application_form.job, application_form) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

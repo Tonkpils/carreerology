@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+.mdl-layout {
+  position: relative;
+}
+
+.job-separator {
+  height: 32px;
+}
+
+.drawer-header {
+  box-sizing: border-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normail;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  padding: 16px;
+}
