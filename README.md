@@ -1,33 +1,63 @@
 # Careerology
 
-We would like you to implement a simple careers site with Ruby on Rails.  The careers site should have several sections:
+## Requirements
 
-* A page that contains a job description with links to an application form
-* An application form that a candidate can fill in and attach a resume and cover letter
-  * Application form should contain at least name, email address, phone number
-  * Take a look at our careers site for an example - http://www.hireology.com/careers
-* An administration site that can edit job descriptions, and view application forms that have been submitted
+* PostgreSQL 9.4+
+* Rails 4.2.3
+* Ruby 2.2.2
+* Bundler 1.10.6
 
-A few hints:
+## Up and running with docker toolbox
 
-We believe in good architectural principles and care about making code that is concise, understandable, and something that will last.
+If you wish to run this in an isolated environment you will need to install docker, docker-compose.
 
-Hireology engineers test their code.  We believe in delivering quality features and being able to move quickly with confidence.  Tests and leveraging automated test suites help us accomplish that.
+If you have `homebrew` installed. Simply run:
 
-Hireology <3 open source!  We are strong believers in open source software and leverage the great tools that are out there and contributing back to the community when we can.  We leverage a number of different open source tools for our projects and would expect engineers to be always looking for ways to take advantage of what the community has to offer.
+```sh
+$ brew install caskroom/cask/brew-cask
+$ brew cask install dockertoolbox
+```
 
-And finally, this isn’t a UX/UI project.  While we appreciate beautiful and well thought-out user interfaces and designs (and our extremely kick butt UX team), this isn’t that type of project.  Engineer graphics and helpers like bootstrap are perfectly acceptable for this exercise.  We want to focus on the full stack and not just the user interface.
+and follow the instructions for installing docker toolbox.
 
-Logistics:
+After docker toolbox is up and running. To run the application simply build it:
 
-Please compile this into a project that can be shared via a github repository (public or private is fine).
+```sh
+$ docker-compose build web
+$ docker-compose up
+```
 
-The repository should include any instructions on how to set up and run the project, any tests, etc.  Remember, if we can’t run your code, it will very difficult for us to evaluate it completely.  Don’t forget to list any 3rd party dependencies (with versions and instructions for use), and bonus points for including scripts to help automate the setup and running of your project.
+The app will be running under the `$(docker-machine ip dev):3000`
 
-Ideally, we could clone this project, run through your instructions/scripts and then be able to run your project and evaluate it.
+in another terminal
 
-Please complete this exercise within the next 7 days. If you have any questions/concerns or need additional time to complete, please let me know.  We look forward to seeing your submission.
+```
+$ docker-compose run web rake db:create
+$ docker-compose run web rake db:seed
+```
 
-## TODO
+
+## Up and running locally
+
+### Setup
+
+Modify the `config/database.yml` with your PostgreSQL specific options such as `host`, `username`, and `password`
+
+### Running
+
+```
+$ rake db:setup
+$ rails s
+```
+
+## Running Tests
+
+Ensure the `database.yml` file contains the correct values for the database
+
+```
+$ RAILS_ENV=test rake db:create db:migrate
+$ rspec spec
+```
+
 
 
