@@ -41,13 +41,17 @@ $ docker-compose run web rake db:seed
 
 ### Setup
 
+```
+$ bin/setup
+$ bin/bundle install
+```
+
 Modify the `config/database.yml` with your PostgreSQL specific options such as `host`, `username`, and `password`
 
 ### Running
 
 ```
-$ rake db:setup
-$ rails s
+$ bin/rails s
 ```
 
 ## Running Tests
@@ -55,8 +59,8 @@ $ rails s
 Ensure the `database.yml` file contains the correct values for the database
 
 ```
-$ RAILS_ENV=test rake db:create db:migrate
-$ rspec spec
+$ RAILS_ENV=test bin/rake db:create db:migrate
+$ bin/rspec spec
 ```
 
 
