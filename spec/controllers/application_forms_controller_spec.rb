@@ -58,6 +58,16 @@ RSpec.describe ApplicationFormsController, type: :controller do
       get :new, {job_id: job.id}
       expect(assigns(:application_form).job).to eq(job)
     end
+
+    context "when the job doesn't exist" do
+
+      it "raises an RecordNotFound error" do
+        expect {
+          get :new, {job_id: 1337}
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
   end
 
   describe "POST #create" do

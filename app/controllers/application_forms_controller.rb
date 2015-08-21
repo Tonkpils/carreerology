@@ -1,10 +1,10 @@
 class ApplicationFormsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show]
+  before_action :set_job, only: [:index, :new, :create]
   before_action :set_application_form, only: [:show]
 
   # GET /application_forms
   def index
-    @job = Job.find(params[:job_id])
     @application_forms = @job.application_forms
   end
 
@@ -14,13 +14,11 @@ class ApplicationFormsController < ApplicationController
 
   # GET /application_forms/new
   def new
-    @job = Job.find(params[:job_id])
     @application_form = @job.application_forms.build
   end
 
   # POST /application_forms
   def create
-    @job = Job.find(params[:job_id])
     @application_form = @job.application_forms.build(application_form_params)
 
     if @application_form.save
@@ -31,6 +29,9 @@ class ApplicationFormsController < ApplicationController
   end
 
   private
+    def set_job
+      @job = Job.find(params[:job_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_application_form
       @application_form = ApplicationForm.find(params[:id])

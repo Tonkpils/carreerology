@@ -40,6 +40,14 @@ RSpec.describe JobsController, type: :controller do
       get :edit, {:id => job.to_param}
       expect(assigns(:job)).to eq(job)
     end
+
+    context "with a non-existant job" do
+      it "raises a record not found error" do
+        expect {
+          get :edit, {id: 1337}
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 
   describe "POST #create" do
@@ -120,6 +128,12 @@ RSpec.describe JobsController, type: :controller do
         put :update, {:id => job.to_param, job: invalid_attributes}
         expect(response).to render_template("edit")
       end
+
+      it "raises a record not found error with an nonexistant job" do
+        expect {
+          put :update, {id: 1337}
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
@@ -137,6 +151,12 @@ RSpec.describe JobsController, type: :controller do
       job = Job.create! valid_attributes
       delete :destroy, {:id => job.to_param}
       expect(response).to redirect_to(jobs_url)
+    end
+
+    it "raises a record not found error with an nonexistant job" do
+      expect {
+        put :update, {id: 1337}
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
